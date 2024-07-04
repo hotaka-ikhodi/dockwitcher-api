@@ -1,6 +1,7 @@
 package com.hotakakademy.dockwitcher.controllers
 
 import com.hotakakademy.dockwitcher.contracts.ConductorDto
+import com.hotakakademy.dockwitcher.domain.entities.Conductor
 import com.hotakakademy.dockwitcher.domain.factories.IConductorFactory
 import com.hotakakademy.dockwitcher.domain.repositories.IConductorRepository
 import com.hotakakademy.dockwitcher.domain.services.ConductorService
@@ -17,11 +18,8 @@ class ConductoresController (
         private val conductorService: IConductorService
 ) {
     @GetMapping("/conductores")
-    fun listado(model: Model
-    ): String {
-        val tractoras = repository.findAll()
-        model.addAttribute("items", tractoras)
-        return "listadoconductores"
+    fun listado(): List<Conductor>{
+        return repository.findAll()
     }
 
     @GetMapping("/conductores/nuevo")
