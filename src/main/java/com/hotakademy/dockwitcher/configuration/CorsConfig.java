@@ -1,4 +1,4 @@
-package com.hotakakademy.dockwitcher.configuration;
+package com.hotakademy.dockwitcher.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
