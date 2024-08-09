@@ -10,15 +10,17 @@ import org.springframework.data.support.PageableExecutionUtils
 import org.springframework.stereotype.Repository
 
 @Repository
-class ConductorRepository(
-        @Qualifier("mongoMasterTemplate")
-        mongoTemplate: MongoTemplate)
-    : AbstractMongoRepository<Conductor>(mongoTemplate, Conductor::class.java), IConductorRepository {
+
+class ConductorRepository(@Qualifier("mongoMasterTemplate")
+                          mongoTemplate: MongoTemplate) : AbstractMongoRepository<Conductor>(mongoTemplate, Conductor::class.java), IConductorRepository
+{
     override fun findAll(paging: PageRequest): Page<Conductor> {
+
         val query = org.springframework.data.mongodb.core.query.Query()
         val count = mongoTemplate.count(query, Conductor::class.java)
         query.with(paging)
         val list = mongoTemplate.find(query, Conductor::class.java)
         return PageableExecutionUtils.getPage(list, paging, { count })
+
     }
 }

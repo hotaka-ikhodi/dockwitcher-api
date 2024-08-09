@@ -14,15 +14,20 @@ import org.springframework.web.bind.annotation.*
 class ConductoresController (
         private val repository: IConductorRepository,
         private val conductorService: IConductorService
-) {
+)
+
+{
     @GetMapping("/conductores")
-    fun listado(@RequestParam(defaultValue = "0") page: Int,
+
+    fun lista(@RequestParam(defaultValue = "0") page: Int,
                 @RequestParam(defaultValue = "10") size: Int,
                 @RequestParam(defaultValue = "date") sort: String,
                 @RequestParam(defaultValue = "desc") direction: String
     ): Page<Conductor>{
+
         val paging = PageRequest.of(page, size, Sort.by(Sort.Direction.fromString(direction), sort))
         return repository.findAll(paging)
+
     }
 
     @GetMapping("/conductores/nuevo")
